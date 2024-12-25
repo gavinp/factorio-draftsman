@@ -221,7 +221,7 @@ class DeciderCombinator(
 
                 #     return self
 
-            decider_conditions: Optional[DeciderConditions] = DeciderConditions()
+            #decider_conditions: Optional[DeciderConditions] = DeciderConditions()
 
         control_behavior: Optional[ControlBehavior] = ControlBehavior()
 
