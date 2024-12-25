@@ -1,10 +1,7 @@
 # My testing file, no reason to distribute
 temp.py
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+draftsman/data/
 
 # C extensions
 *.so
