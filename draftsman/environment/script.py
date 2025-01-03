@@ -6,6 +6,7 @@ from draftsman._factorio_version import __factorio_version__
 
 from draftsman.environment.mod_list import discover_mods, display_mods, set_mods_enabled
 from draftsman.environment.mod_settings import read_mod_settings, write_mod_settings
+from draftsman.environment.tool import run_draftsman_tool
 from draftsman.environment.update import specify_factorio_version, update_draftsman_data
 
 import argparse
@@ -130,7 +131,7 @@ def main():
     #     "--recursive",
     #     action="store_true",
     #     help="Recursively disable the dependencies of the specified mods. Note "
-    #     "that this will only disable mod dependencies of a particular mod if no "
+    #     "that this wilnargsl only disable mod dependencies of a particular mod if no "
     #     "other enabled mod still depends on it. This flag will also not disable "
     #     "the `base` or `core` mod, though it will disable official Wube mods "
     #     "like `space-age`."
@@ -178,6 +179,17 @@ def main():
         "mods made by Wube (`quality`, `elevated-rails`, `space-age`) are NOT "
         "affected by this flag; those should be manually configured with "
         "`draftsman enable|disable [official-mod]`",
+    )
+
+    tool_command = subparsers.add_parser(
+        "tool",
+        help="Run one of draftsman's tools for printing/manipulating blueprints.",
+    )
+    tool_command.add_argument(
+        "TOOL",
+        help="Which tool to run.",
+        nargs='?',
+        default="help",
     )
 
     args: DraftsmanCommandArgs = parser.parse_args(namespace=DraftsmanCommandArgs())
@@ -267,6 +279,12 @@ def main():
             no_mods=args.no_mods,
             verbose=args.verbose,
         )
+    elif args.operation == "tool":
+        run_draftsman_tool()
+    else:
+        assert(False)
+        
+    
 
 
 if __name__ == "__main__":
